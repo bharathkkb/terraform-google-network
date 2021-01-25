@@ -42,7 +42,7 @@ output "project_id" {
 output "subnets_names" {
   value       = [for network in module.subnets.subnets : network.name]
   description = "The names of the subnets being created"
-  depends_on = [ module.subnets ]
+  depends_on = [for network in module.subnets.subnets : network.self_link]
 }
 
 output "subnets_ips" {
